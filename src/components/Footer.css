@@ -134,7 +134,7 @@
     border-color: var(--primary);
 }
 
-.footer-newsletter button {
+.footer-newsletter .footer-subscribe-btn {
     background: var(--primary);
     color: white;
     border: none;
@@ -144,10 +144,15 @@
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9rem;
 }
 
-.footer-newsletter button:hover {
+.footer-newsletter .footer-subscribe-btn:hover {
     background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .footer-bottom {

@@ -57,8 +57,23 @@ const Footer = () => {
                     <h4 className="footer-heading">{t.footer.newsletter.title}</h4>
                     <p className="footer-text">{t.footer.newsletter.desc}</p>
                     <div className="footer-newsletter">
-                        <input type="email" placeholder={t.footer.newsletter.placeholder} />
-                        <button type="button">{t.footer.newsletter.btn}</button>
+                        <input
+                            type="text"
+                            placeholder={t.footer.newsletter.placeholder}
+                            id="footer-subscribe-input"
+                        />
+                        <a
+                            href={t.footer.socialLinks.telegram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="footer-subscribe-btn"
+                            onClick={() => {
+                                const input = document.getElementById('footer-subscribe-input');
+                                if (input) input.value = '';
+                            }}
+                        >
+                            {t.footer.newsletter.btn} <FaTelegram style={{ marginLeft: '8px' }} />
+                        </a>
                     </div>
                 </div>
             </div>

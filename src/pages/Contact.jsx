@@ -300,7 +300,7 @@ const Contact = () => {
                                 <p style={{
                                     margin: 0,
                                     color: 'var(--text-secondary)'
-                                }}>📍 Manzil: A.Xodjayev 38</p>
+                                }}>📍 Manzil: A.Xodjayev 38, Namangan shaxar</p>
                             </div>
                         </div>
                     </div>

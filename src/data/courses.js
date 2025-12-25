@@ -3,6 +3,7 @@ import img3213 from '../assets/IMG_3213.JPG';
 import img3206 from '../assets/IMG_3206.JPG';
 import img3216 from '../assets/IMG_3216.JPG';
 import img3281 from '../assets/IMG_3281.JPG';
+import imgSardorbek from '../assets/serdorbek.jpg';
 import imgNemis from '../assets/nemis.png';
 import koreanImg from '../assets/korean.png';
 
@@ -41,10 +42,10 @@ export const coursesData = [
     {
         id: 2,
         title: 'Front-end Dasturlash',
-        instructor: 'Frontend Eksperti',
+        instructor: 'Sardorbek Daminov ',
         instructorSlug: 'frontend-eksperti',
         instructorBio: {
-            uz: 'Zamonaviy veb-texnologiyalar (React, Vue, Next.js) bo\'yicha chuqur bilimga ega. Ko\'plab xalqaro loyihalarda ishtirok etgan senior dasturchi.',
+            uz: 'Zamonaviy veb-texnologiyalar (React, Vue, Next.js) bo\'yicha chuqur bilimga ega. Ko\'plab xalqaro loyihalarda ishtirok etgan Senior dasturchi.',
             en: 'In-depth knowledge of modern web technologies (React, Vue, Next.js). Senior developer who has worked on many international projects.'
         },
         instructorSkills: {
@@ -56,8 +57,8 @@ export const coursesData = [
             en: 'Inha University - Computer Science'
         },
         instructorAchieve: {
-            uz: 'Xalqaro Web-Programming tanlovi g\'olibi',
-            en: 'Winner of International Web-Programming Competition'
+            uz: 'Jamoa Bilan Ishlash Uzoq Yillik Tajriba. Samarali va Tez ishlash',
+            en: 'Many Years of Experience in Teamwork. Efficient and Fast Work'
         },
         rating: 5.0,
         students: 150,
@@ -66,7 +67,7 @@ export const coursesData = [
         oldPrice: '700 000 UZS',
         category: 'Dasturlash',
         image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        instructorImg: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
+        instructorImg: imgSardorbek
     },
     {
         id: 3,

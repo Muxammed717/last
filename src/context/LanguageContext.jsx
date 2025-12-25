@@ -133,9 +133,9 @@ const translations = {
             address: '📍 Manzil: A.Xodjayev 38',
             landmark: '📍 Mo\'ljal: DX binosi 4-qavat, Chorsu, Namangan',
             newsletter: {
-                title: 'Yangiliklar',
-                desc: 'Kelajak texnologiyalari haqidagi yangiliklardan xabardor bo\'ling.',
-                placeholder: 'Email manzilingiz',
+                title: 'Telegram Kanalimiz',
+                desc: 'Kanalimizga obuna bo\'ling va eng so\'nggi yangiliklardan xabardor bo\'ling.',
+                placeholder: 'Savolingiz bormi? (Ixtiyoriy)',
                 btn: 'Obuna bo\'lish'
             },
             legal: {
@@ -336,10 +336,10 @@ const translations = {
             address: '📍 Address: A.Xodjayev 38',
             landmark: '📍 Landmark: DX building 4th floor, Chorsu, Namangan',
             newsletter: {
-                title: 'Newsletter',
-                desc: 'Stay updated with the latest in future technologies.',
-                placeholder: 'Your email address',
-                btn: 'Subscribe'
+                title: 'Telegram Channel',
+                desc: 'Subscribe to our channel and stay updated with the latest news.',
+                placeholder: 'Have a question? (Optional)',
+                btn: 'Subscribe Now'
             },
             legal: {
                 privacy: 'Privacy Policy',
