@@ -18,12 +18,9 @@ const MonitoringDashboard = () => {
         activeCourses: 0,
         paidCount: 0,
         unpaidCount: 0,
-        courseDistribution: {}
+        courseDistribution: {},
+        groupPerformance: []
     });
-
-    const [uptime, setUptime] = useState('00:00:00');
-    const [logs, setLogs] = useState([]);
-    const logContainerRef = useRef(null);
 
     useEffect(() => {
         const session = localStorage.getItem('monitorSession');
@@ -31,6 +28,10 @@ const MonitoringDashboard = () => {
 
         const storedStudents = localStorage.getItem('datasite_students');
         const students = storedStudents ? JSON.parse(storedStudents) : initialStudents;
+
+        const storedGroups = localStorage.getItem('datasite_groups');
+        const groups = storedGroups ? JSON.parse(storedGroups) : [];
+
         const paid = students.filter(s => s.status === 'paid');
         const dist = {};
         students.forEach(s => { dist[s.course] = (dist[s.course] || 0) + 1; });
@@ -43,115 +44,78 @@ const MonitoringDashboard = () => {
             activeCourses: coursesData.length,
             paidCount: paid.length,
             unpaidCount: students.length - paid.length,
-            courseDistribution: dist
+            courseDistribution: dist,
+            groupPerformance: groups.sort((a, b) => (b.revenue || 0) - (a.revenue || 0))
         });
-
-        const startTime = Date.now();
-        const interval = setInterval(() => {
-            const diff = Date.now() - startTime;
-            const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
-            const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
-            const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
-            setUptime(`${h}:${m}:${s}`);
-
-            const actions = ['FETCH_STUDENTS', 'VALIDATE_AUTH', 'SYNC_DB', 'CACHE_RELOAD', 'NODE_PING', 'REVENUE_CALC'];
-            const newLog = `[${new Date().toLocaleTimeString()}] ${actions[Math.floor(Math.random() * actions.length)]} - SUCCESS`;
-            setLogs(prev => [...prev.slice(-20), newLog]);
-        }, 3000);
-
-        return () => clearInterval(interval);
     }, [navigate]);
-
-    useEffect(() => {
-        if (logContainerRef.current) {
-            logContainerRef.current.scrollTop = logContainerRef.current.scrollHeight;
-        }
-    }, [logs]);
 
     return (
         <div className="monitoring-page" style={pageStyle}>
-            <div className="container" style={{ maxWidth: '1440px' }}>
-                {/* Minimalist Top Bar */}
+            <div className="container" style={{ maxWidth: '1200px' }}>
                 <header style={headerStyle}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <div style={statusInd}></div>
-                        <h1 style={titleStyle}>SYSTEM MONITORING CENTER</h1>
-                        <span style={verStyle}>v4.1.0</span>
+                    <div>
+                        <h1 style={titleStyle}>{t.monitoring.title.toUpperCase()}</h1>
+                        <p style={{ color: '#64748b', fontSize: '0.8rem', marginTop: '0.5rem' }}>{t.monitoring.subtitle}</p>
                     </div>
-                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-                        <div style={timeDisplay}>
-                            <span style={timeLabel}>SYSTEM UPTIME</span>
-                            <span style={timeValue}>{uptime}</span>
-                        </div>
-                        <button style={logoutBtn} onClick={() => { localStorage.removeItem('monitorSession'); navigate('/monitoring'); }}>
-                            <FaSignOutAlt /> EXIT
-                        </button>
-                    </div>
+                    <button style={logoutBtn} onClick={() => { localStorage.removeItem('monitorSession'); navigate('/monitoring'); }}>
+                        <FaSignOutAlt /> {t.admin.close}
+                    </button>
                 </header>
 
-                {/* Data Grid - 4 Columns */}
                 <div style={topGrid}>
-                    <QuickStat label="TOTAL CAPACITY" value={stats.totalStudents} sub="Students" />
-                    <QuickStat label="OPERATIONAL REVENUE" value={new Intl.NumberFormat('uz-UZ').format(stats.totalRevenue)} sub="UZS" />
-                    <QuickStat label="ACTIVE MODULES" value={stats.activeCourses} sub="Courses" />
-                    <QuickStat label="PAYMENT RATIO" value={Math.round((stats.paidCount / stats.totalStudents) * 100) + '%'} sub="Verified" />
+                    <QuickStat label={t.monitoring.stats.totalStudents} value={stats.totalStudents} color="#f1f5f9" icon={<FaUsers />} />
+                    <QuickStat label={t.monitoring.stats.totalRevenue} value={new Intl.NumberFormat('uz-UZ').format(stats.totalRevenue)} sub="UZS" color="#10b981" icon={<FaMoneyBillWave />} />
+                    <QuickStat label={t.monitoring.stats.paidStudents} value={stats.paidCount} color="#10b981" icon={<FaChartPie />} />
+                    <QuickStat label={t.monitoring.stats.unpaidStudents} value={stats.unpaidCount} color="#ef4444" icon={<FaShieldAlt />} />
                 </div>
 
                 <div style={mainLayout}>
-                    {/* Left: System Status & Distribution */}
-                    <div style={leftColumn}>
-                        <div style={panel}>
-                            <h3 style={panelTitle}><FaDatabase /> DATA DISTRIBUTION</h3>
-                            <div style={distList}>
-                                {Object.entries(stats.courseDistribution).map(([course, count]) => (
-                                    <div key={course} style={distItem}>
-                                        <div style={distHeader}>
-                                            <span style={distName}>{course.toUpperCase()}</span>
-                                            <span style={distValue}>{count}</span>
-                                        </div>
-                                        <div style={progBarBg}>
-                                            <div style={{ ...progBar, width: `${(count / stats.totalStudents) * 100}%` }}></div>
-                                        </div>
+                    <div style={panel}>
+                        <h3 style={panelTitle}><FaDatabase /> {t.admin.groupRevenue}</h3>
+                        <div style={distList}>
+                            {stats.groupPerformance.map((group) => (
+                                <div key={group.id} style={distItem}>
+                                    <div style={distHeader}>
+                                        <span style={distName}>{group.name}</span>
+                                        <span style={{ ...distValue, color: '#10b981' }}>{new Intl.NumberFormat('uz-UZ').format(group.revenue || 0)} UZS</span>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div style={statusGrid}>
-                            <StatusTile icon={<FaServer />} label="BASE SERVER" status="ONLINE" />
-                            <StatusTile icon={<FaNetworkWired />} label="API GATEWAY" status="ACTIVE" />
+                                    <div style={progBarBg}>
+                                        <div style={{ ...progBar, width: `${stats.totalRevenue > 0 ? ((group.revenue || 0) / stats.totalRevenue) * 100 : 0}%`, backgroundColor: '#10b981' }}></div>
+                                    </div>
+                                    <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '4px' }}>{t.admin.teacher}: {group.teacherName}</div>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Right: Real-time Terminal Logs */}
-                    <div style={rightColumn}>
-                        <div style={terminalPanel}>
-                            <h3 style={panelTitle}><FaTerminal /> SYSTEM REAL-TIME LOGS</h3>
-                            <div ref={logContainerRef} style={logArea}>
-                                {logs.map((log, i) => (
-                                    <div key={i} style={logLine}>
-                                        <span style={logArrow}></span> {log}
+                    <div style={panel}>
+                        <h3 style={panelTitle}><FaBookOpen /> {t.monitoring.charts.studentDist}</h3>
+                        <div style={distList}>
+                            {Object.entries(stats.courseDistribution).map(([course, count]) => (
+                                <div key={course} style={distItem}>
+                                    <div style={distHeader}>
+                                        <span style={distName}>{course}</span>
+                                        <span style={distValue}>{count} {t.admin.groupStudents}</span>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div style={summaryPanel}>
-                            <div style={summaryStat}>
-                                <div style={sumLabel}>SECURITY STATUS</div>
-                                <div style={sumValue}>ENCRYPTED / AES-256</div>
-                            </div>
+                                    <div style={progBarBg}>
+                                        <div style={{ ...progBar, width: `${stats.totalStudents > 0 ? (count / stats.totalStudents) * 100 : 0}%`, backgroundColor: 'var(--primary)' }}></div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    );
+};
 
-            <style>{`
+<style>{`
                 ::-webkit-scrollbar { width: 4px; }
                 ::-webkit-scrollbar-track { background: transparent; }
                 ::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
             `}</style>
-        </div>
+        </div >
     );
 };
 
