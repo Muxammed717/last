@@ -144,10 +144,10 @@ const translations = {
                 instagram: 'https://instagram.com/datasite_academy',
                 youtube: 'https://youtube.com/@datasite_academy'
             },
-            phone: '+998-95-061-64-66',
+            phone: '+998 95 061 64 66',
             email: 'datasite_academy@gmail.com',
             address: '📍 Manzil: A.Xodjayev 38',
-            landmark: '📍 Mo\'ljal: DX binosi 4-qavat, Chorsu, Namangan',
+            landmark: '📍 Mo\'ljal: Chorsu, Davlat Xizmatlari binosi, 4-qavat',
             newsletter: {
                 title: 'Telegram Kanalimiz',
                 desc: 'Kanalimizga obuna bo\'ling va eng so\'nggi yangiliklardan xabardor bo\'ling.',
@@ -363,10 +363,10 @@ const translations = {
                 instagram: 'https://instagram.com/datasite_academy',
                 youtube: 'https://youtube.com/@datasite_academy'
             },
-            phone: '+998-95-061-64-66',
+            phone: '+998 95 061 64 66',
             email: 'datasite_academy@gmail.com',
             address: '📍 Address: A.Xodjayev 38',
-            landmark: '📍 Landmark: DX building 4th floor, Chorsu, Namangan',
+            landmark: '📍 Landmark: Chorsu, Public Services Building, 4th floor',
             newsletter: {
                 title: 'Telegram Channel',
                 desc: 'Subscribe to our channel and stay updated with the latest news.',

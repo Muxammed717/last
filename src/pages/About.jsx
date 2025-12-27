@@ -100,7 +100,7 @@ const About = () => {
 
             <section className="journey-track">
                 <div className="container">
-                    <h2 className="section-header on-scroll-reveal fade-in">Bizning Tariximiz</h2>
+                    <h2 className="section-header on-scroll-reveal fade-in">{t.about.storyTitle}</h2>
                     <div className="timeline-wrapper">
                         {JOURNEY_MILESTONES.map((item, idx) => (
                             <div

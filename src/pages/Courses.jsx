@@ -35,11 +35,11 @@ const Courses = () => {
 
     const categories = [
         { key: 'All', label: t.courses.filter.all },
-        { key: 'Boshlang\'ich', label: 'Boshlang\'ich' },
-        { key: 'Dasturlash', label: 'Dasturlash' },
-        { key: 'Individual', label: 'Individual' },
-        { key: 'Boshqa', label: 'Boshqa' },
-        { key: 'Til', label: 'Til' }
+        { key: 'Boshlang\'ich', label: t.language === 'uz' ? 'Boshlang\'ich' : 'Beginner' },
+        { key: 'Dasturlash', label: t.courses.filter.dev },
+        { key: 'Individual', label: t.language === 'uz' ? 'Individual' : 'Individual' },
+        { key: 'Boshqa', label: t.language === 'uz' ? 'Boshqa' : 'Other' },
+        { key: 'Til', label: t.language === 'uz' ? 'Til' : 'Language' }
     ];
 
     return (
