@@ -13,23 +13,11 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container navbar-container">
-        <Link to="/" className="logo-container">
-          <div className="logo-icon">
-            <FaSnowflake
-              style={{
-                position: 'absolute',
-                top: '-8px',
-                right: '-8px',
-                color: '#0ea5e9',
-                fontSize: '14px',
-                animation: 'spin 4s linear infinite'
-              }}
-            />
-            DS
-          </div>
+        <Link to="/" className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
+          <img src="/logo.png" alt="DataSite Logo" style={{ height: '40px', width: 'auto' }} />
           <div className="logo-text">
-            <span className="logo-main">DataSite</span>
-            <span className="logo-sub">ACADEMY</span>
+            <span className="logo-main" style={{ color: 'white', fontWeight: 800, fontSize: '1.25rem' }}>DataSite</span>
+            <span className="logo-sub" style={{ color: 'var(--primary)', display: 'block', fontSize: '0.7rem', fontWeight: 700, marginTop: '-4px' }}>ACADEMY</span>
           </div>
         </Link>
         <style>{`
