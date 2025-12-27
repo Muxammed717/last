@@ -35,11 +35,11 @@ const Courses = () => {
 
     const categories = [
         { key: 'All', label: t.courses.filter.all },
-        { key: 'Boshlang\'ich', label: t.language === 'uz' ? 'Boshlang\'ich' : 'Beginner' },
+        { key: 'Boshlang\'ich', label: t.courses.filter.beginner },
         { key: 'Dasturlash', label: t.courses.filter.dev },
-        { key: 'Individual', label: t.language === 'uz' ? 'Individual' : 'Individual' },
-        { key: 'Boshqa', label: t.language === 'uz' ? 'Boshqa' : 'Other' },
-        { key: 'Til', label: t.language === 'uz' ? 'Til' : 'Language' }
+        { key: 'Individual', label: t.courses.filter.individual },
+        { key: 'Boshqa', label: t.courses.filter.other },
+        { key: 'Til', label: t.courses.filter.language }
     ];
 
     return (
@@ -92,7 +92,9 @@ const Courses = () => {
                             </div>
 
                             <div style={{ padding: '2rem' }}>
-                                <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '1.5rem', lineHeight: 1.3, color: 'var(--text-main)' }}>{course.title}</h3>
+                                <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '1.5rem', lineHeight: 1.3, color: 'var(--text-main)' }}>
+                                    {t.language === 'uz' ? course.title : (course.titleEn || course.title)}
+                                </h3>
 
                                 {/* Teacher Info */}
                                 <div style={{

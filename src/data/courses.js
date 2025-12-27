@@ -12,6 +12,7 @@ export const coursesData = [
     {
         id: 1,
         title: 'Kompyuter savodxonligi',
+        titleEn: 'Computer Literacy',
         instructor: 'Zokirjon Ahmadqulov',
         instructorSlug: 'datasite-ustozi',
         instructorBio: {
@@ -42,6 +43,7 @@ export const coursesData = [
     {
         id: 2,
         title: 'Front-end Dasturlash',
+        titleEn: 'Front-end Development',
         instructor: 'Sardorbek Daminov ',
         instructorSlug: 'frontend-eksperti',
         instructorBio: {
@@ -72,6 +74,7 @@ export const coursesData = [
     {
         id: 3,
         title: 'Backend Dasturlash',
+        titleEn: 'Backend Development',
         instructor: 'Backend Senyori',
         instructorSlug: 'backend-senyori',
         instructorBio: {
@@ -102,6 +105,7 @@ export const coursesData = [
     {
         id: 4,
         title: 'Full Stack Dasturlash',
+        titleEn: 'Full Stack Development',
         instructor: 'Ilyosbek Habibullayev',
         instructorSlug: 'senior-mentor',
         instructorBio: {
@@ -132,6 +136,7 @@ export const coursesData = [
     {
         id: 6,
         title: 'Buxgalteriya',
+        titleEn: 'Accounting',
         instructor: 'Bosh Hisobchi',
         instructorSlug: 'bosh-hisobchi',
         instructorBio: {
@@ -161,6 +166,7 @@ export const coursesData = [
     {
         id: 8,
         title: 'Ingliz tili',
+        titleEn: 'English Language',
         instructor: 'Salohiddin Obidov',
         instructorSlug: 'ielts-instruktori',
         instructorBio: {
@@ -192,6 +198,7 @@ export const coursesData = [
     {
         id: 9,
         title: 'Koreys tili',
+        titleEn: 'Korean Language',
         instructor: 'Osimxon Rahimjanov',
         instructorSlug: 'koreys-mutaxassisi',
         instructorBio: {
@@ -222,6 +229,7 @@ export const coursesData = [
     {
         id: 10,
         title: 'Nemis tili',
+        titleEn: 'German Language',
         instructor: 'Nemis Tili O\'qituvchisi',
         instructorSlug: 'nemis-tili-oqituvchisi',
         instructorBio: {

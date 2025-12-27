@@ -72,14 +72,14 @@ const Contact = () => {
             setNotification({
                 show: true,
                 type: 'success',
-                message: t.language === 'uz' ? 'Xabaringiz muvaffaqiyatli yuborildi!' : 'Your message has been sent successfully!'
+                message: t.contact.notifications.success
             });
             setFormData({ name: '', phone: '', course: coursesData[0]?.title || '', message: '' });
         } catch (error) {
             setNotification({
                 show: true,
                 type: 'error',
-                message: t.language === 'uz' ? 'Xatolik yuz berdi.' : 'An error occurred.'
+                message: t.contact.notifications.error
             });
         } finally { setIsSubmitting(false); }
     };

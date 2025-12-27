@@ -71,10 +71,10 @@ const About = () => {
     }, []);
 
     const JOURNEY_MILESTONES = [
-        { year: '2022', title: t.aboutPage.timeline.year2022.split(':')[1], desc: t.aboutPage.timeline.desc2022, side: 'left' },
-        { year: '2023', title: t.aboutPage.timeline.year2023.split(':')[1], desc: t.aboutPage.timeline.desc2023, side: 'right' },
-        { year: '2024', title: t.aboutPage.timeline.year2024.split(':')[1], desc: t.aboutPage.timeline.desc2024, side: 'left' },
-        { year: '2025', title: t.aboutPage.timeline.year2025.split(':')[1], desc: t.aboutPage.timeline.desc2025, side: 'right' }
+        { year: '2022', title: t.aboutPage.timeline.year2022.split(':')[1] || t.aboutPage.timeline.year2022, desc: t.aboutPage.timeline.desc2022, side: 'left' },
+        { year: '2023', title: t.aboutPage.timeline.year2023.split(':')[1] || t.aboutPage.timeline.year2023, desc: t.aboutPage.timeline.desc2023, side: 'right' },
+        { year: '2024', title: t.aboutPage.timeline.year2024.split(':')[1] || t.aboutPage.timeline.year2024, desc: t.aboutPage.timeline.desc2024, side: 'left' },
+        { year: '2025', title: t.aboutPage.timeline.year2025.split(':')[1] || t.aboutPage.timeline.year2025, desc: t.aboutPage.timeline.desc2025, side: 'right' }
     ];
 
     return (

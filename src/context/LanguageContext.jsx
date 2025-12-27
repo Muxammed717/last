@@ -167,10 +167,14 @@ const translations = {
             years: 'yil',
             filter: {
                 all: 'Barchasi',
+                beginner: 'Boshlang\'ich',
                 dev: 'Dasturlash',
+                individual: 'Individual',
                 data: 'Ma\'lumotlar',
                 design: 'Dizayn',
-                marketing: 'Marketing'
+                marketing: 'Marketing',
+                other: 'Boshqa',
+                language: 'Til'
             },
             card: {
                 weeks: 'Hafta',
@@ -221,6 +225,10 @@ const translations = {
                 emailAddr: 'Email Manzil',
                 message: 'Xabar',
                 send: 'Xabarni Yuborish'
+            },
+            notifications: {
+                success: 'Xabaringiz muvaffaqiyatli yuborildi!',
+                error: 'Xatolik yuz berdi.'
             }
         }
     },
@@ -386,10 +394,14 @@ const translations = {
             years: 'years',
             filter: {
                 all: 'All',
+                beginner: 'Beginner',
                 dev: 'Development',
+                individual: 'Individual',
                 data: 'Data Science',
                 design: 'Design',
-                marketing: 'Marketing'
+                marketing: 'Marketing',
+                other: 'Other',
+                language: 'Language'
             },
             card: {
                 weeks: 'Weeks',
@@ -440,6 +452,10 @@ const translations = {
                 emailAddr: 'Email Address',
                 message: 'Message',
                 send: 'Send Message'
+            },
+            notifications: {
+                success: 'Your message has been sent successfully!',
+                error: 'An error occurred.'
             }
         }
     }
