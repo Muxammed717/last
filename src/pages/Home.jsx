@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaLaptopCode, FaChartLine, FaUserTie, FaRocket, FaProjectDiagram, FaBriefcase, FaGraduationCap, FaPalette } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import Snowfall from '../components/Snowfall';
 import './Home.css';
 
 const RoadmapStep = ({ icon: Icon, title, desc, stepNumber }) => (
@@ -30,6 +31,7 @@ const MainBanner = ({ t }) => {
 
     return (
         <section className="banner-wrap">
+            <Snowfall />
             <div className="background-elements">
                 <div className="glow-orb orb-1"></div>
                 <div className="glow-orb orb-2"></div>
@@ -107,33 +109,33 @@ const Home = () => {
 
                     <div className="highlights-grid">
                         <div className="highlight-card item-support">
-                            <div className="card-symbol" style={{ backgroundColor: '#f0932b' }}><FaUserTie /></div>
+                            <div className="card-symbol symbol-orange"><FaUserTie /></div>
                             <h3>{t.home.features.secondTeacher}</h3>
                             <p>{t.home.features.secondTeacherDesc}</p>
                         </div>
 
                         <div className="highlight-card item-mentors">
                             <div className="mentors-preview">
-                                <img src="/src/assets/team_mentors.jpg" alt="Academy Mentors" />
+                                <img src="/team_mentors.jpg" alt="Academy Mentors" />
                             </div>
                             <h3>{t.home.features.mentors}</h3>
                             <p>{t.home.features.mentorsDesc}</p>
                         </div>
 
                         <div className="highlight-card item-events">
-                            <div className="card-symbol" style={{ backgroundColor: '#eb4d4b' }}><FaPalette /></div>
+                            <div className="card-symbol symbol-red"><FaPalette /></div>
                             <h3>{t.home.features.events}</h3>
                             <p>{t.home.features.eventsDesc}</p>
                         </div>
 
                         <div className="highlight-card item-mock">
-                            <div className="card-symbol" style={{ backgroundColor: '#6ab04c' }}><FaLaptopCode /></div>
+                            <div className="card-symbol symbol-green"><FaLaptopCode /></div>
                             <h3>{t.home.features.mock}</h3>
                             <p>{t.home.features.mockDesc}</p>
                         </div>
 
                         <div className="highlight-card item-coworking">
-                            <div className="card-symbol" style={{ backgroundColor: '#30336b' }}><FaChartLine /></div>
+                            <div className="card-symbol symbol-teal"><FaChartLine /></div>
                             <h3>{t.home.features.coworking}</h3>
                             <p>{t.home.features.coworkingDesc}</p>
                         </div>

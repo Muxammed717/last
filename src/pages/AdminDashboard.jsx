@@ -12,7 +12,7 @@ const AdminDashboard = () => {
     const [groups, setGroups] = useState([]);
     const [paymentHistory, setPaymentHistory] = useState([]);
 
-    const [activeTab, setActiveTab] = useState('students'); // 'students' or 'groups'
+    const [activeTab, setActiveTab] = useState('students'); // 'students', 'groups', or 'search'
     const [filterGroup, setFilterGroup] = useState('all');
     const [isAdding, setIsAdding] = useState(false);
     const [isAddingGroup, setIsAddingGroup] = useState(false);
@@ -20,6 +20,11 @@ const AdminDashboard = () => {
     const [editingGroupId, setEditingGroupId] = useState(null);
     const [formData, setFormData] = useState({ name: '', groupId: '' });
     const [groupFormData, setGroupFormData] = useState({ name: '', courseId: '', teacherName: '' });
+
+    // Status Search states
+    const [searchId, setSearchId] = useState('');
+    const [searchResult, setSearchResult] = useState(null);
+    const [searchError, setSearchError] = useState(false);
 
     const [paymentModal, setPaymentModal] = useState({ show: false, id: null, amount: '500000', studentName: '' });
     const [receiptModal, setReceiptModal] = useState({ show: false, receipt: null });
@@ -222,6 +227,12 @@ const AdminDashboard = () => {
                     >
                         <FaChalkboardTeacher /> {t.admin.groups}
                     </button>
+                    <button
+                        onClick={() => setActiveTab('search')}
+                        style={{ ...tabBtn, borderBottom: activeTab === 'search' ? '3px solid var(--primary)' : 'none', color: activeTab === 'search' ? 'var(--primary)' : 'var(--text-secondary)' }}
+                    >
+                        <FaUsers /> {t.nav.status}
+                    </button>
                 </div>
 
                 {activeTab === 'students' ? (
@@ -305,7 +316,7 @@ const AdminDashboard = () => {
                             </table>
                         </div>
                     </>
-                ) : (
+                ) : activeTab === 'groups' ? (
                     <>
                         <div style={{ marginBottom: '2rem' }}>
                             {!isAddingGroup && <button className="btn btn-primary" onClick={() => setIsAddingGroup(true)}><FaPlus /> {t.admin.addGroup}</button>}
@@ -361,6 +372,79 @@ const AdminDashboard = () => {
                             </table>
                         </div>
                     </>
+                ) : (
+                    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+                        <div style={formBox}>
+                            <h2 style={{ marginBottom: '1.5rem' }}>{t.status?.title || 'Student Status'}</h2>
+                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                <input
+                                    placeholder="Enter ID (e.g. DS2025)"
+                                    value={searchId}
+                                    onChange={e => { setSearchId(e.target.value); setSearchError(false); }}
+                                    style={{ ...inputStyle, flex: 1 }}
+                                />
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={() => {
+                                        const found = students.find(s => s.id === searchId.toUpperCase());
+                                        if (found) {
+                                            setSearchResult(found);
+                                            setSearchError(false);
+                                        } else {
+                                            setSearchResult(null);
+                                            setSearchError(true);
+                                        }
+                                    }}
+                                >
+                                    Search
+                                </button>
+                            </div>
+
+                            {searchError && (
+                                <div style={{ color: '#EF4444', marginTop: '1rem', textAlign: 'center', fontWeight: 700 }}>
+                                    Student not found!
+                                </div>
+                            )}
+                        </div>
+
+                        {searchResult && (
+                            <div style={{ ...formBox, animation: 'fadeIn 0.3s ease' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+                                    <div>
+                                        <h3 style={{ fontSize: '1.5rem', fontWeight: 900 }}>{searchResult.name}</h3>
+                                        <p style={{ color: 'var(--primary)', fontWeight: 700 }}>{searchResult.id}</p>
+                                    </div>
+                                    <span style={{
+                                        padding: '0.5rem 1rem', borderRadius: '2rem', height: 'fit-content',
+                                        backgroundColor: searchResult.status === 'paid' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                                        color: searchResult.status === 'paid' ? '#10B981' : '#EF4444',
+                                        fontWeight: 800
+                                    }}>
+                                        {searchResult.status === 'paid' ? t.status.paid : t.status.unpaid}
+                                    </span>
+                                </div>
+
+                                <div style={{ display: 'grid', gap: '1rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <span style={{ color: 'var(--text-secondary)' }}>Course:</span>
+                                        <span style={{ fontWeight: 700 }}>{searchResult.course}</span>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <span style={{ color: 'var(--text-secondary)' }}>Last Payment:</span>
+                                        <span style={{ fontWeight: 700 }}>{searchResult.lastPayment || '—'}</span>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <span style={{ color: 'var(--text-secondary)' }}>Next Payment:</span>
+                                        <span style={{ fontWeight: 700 }}>{searchResult.nextPayment || '—'}</span>
+                                    </div>
+                                    <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1rem', marginTop: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
+                                        <span style={{ color: 'var(--text-secondary)' }}>Total Paid:</span>
+                                        <span style={{ fontWeight: 900, color: '#10b981' }}>{new Intl.NumberFormat('uz-UZ').format(searchResult.totalPaid || 0)} UZS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 )}
 
                 {/* Student History Modal */}

@@ -25,7 +25,7 @@ const FilterButton = ({ active, children, onClick }) => (
 );
 
 const Courses = () => {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const navigate = useNavigate();
     const [filter, setFilter] = useState('All');
 
@@ -87,13 +87,13 @@ const Courses = () => {
                             <div style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
                                 <img src={course.image} alt={course.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 <div style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', padding: '0.4rem 0.8rem', borderRadius: 'var(--radius-md)', color: 'white', fontSize: '0.75rem', fontWeight: 700 }}>
-                                    {course.category}
+                                    {t.courses.filter[Object.keys(t.courses.filter).find(key => t.courses.filter[key] === course.category) || 'other']}
                                 </div>
                             </div>
 
                             <div style={{ padding: '2rem' }}>
                                 <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '1.5rem', lineHeight: 1.3, color: 'var(--text-main)' }}>
-                                    {t.language === 'uz' ? course.title : (course.titleEn || course.title)}
+                                    {language === 'uz' ? course.title : (course.titleEn || course.title)}
                                 </h3>
 
                                 {/* Teacher Info */}
@@ -127,10 +127,10 @@ const Courses = () => {
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border)', paddingTop: '1.5rem' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                                            <FaClock /> {course.duration}
+                                            <FaClock /> {course.duration.replace('Oy', language === 'uz' ? 'Oy' : 'Months')}
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                                            <FaExternalLinkAlt /> {course.students} {t.courses.students}
+                                            <FaExternalLinkAlt /> {course.students} {t.courses.card.students}
                                         </div>
                                     </div>
                                     <div style={{ textAlign: 'right' }}>

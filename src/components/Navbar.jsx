@@ -14,30 +14,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container navbar-container">
         <Link to="/" className="logo-container">
-          <div className="logo-icon">
-            <FaSnowflake
-              style={{
-                position: 'absolute',
-                top: '-8px',
-                right: '-8px',
-                color: '#0ea5e9',
-                fontSize: '14px',
-                animation: 'spin 4s linear infinite'
-              }}
-            />
-            DS
-          </div>
-          <div className="logo-text">
-            <span className="logo-main">DataSite</span>
-            <span className="logo-sub">ACADEMY</span>
-          </div>
+          <img src="/brand-logo.png" alt="DataSite Academy" className="logo-img" />
         </Link>
-        <style>{`
-            @keyframes spin {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-        `}</style>
 
         {/* Desktop Language Switcher - Visible on desktop */}
         <div style={{ marginLeft: 'auto', marginRight: '1rem', display: 'none' }} className="desktop-lang-switch">
@@ -70,9 +48,6 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link to="/about" className="nav-link" onClick={toggleMenu}>{t.nav.about}</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/status" className="nav-link" onClick={toggleMenu}>{t.nav.status}</Link>
           </li>
           <li className="nav-item">
             <Link to="/contact" className="nav-link" onClick={toggleMenu}>{t.nav.contact}</Link>

@@ -6,7 +6,6 @@ import Home from './pages/Home';
 import Courses from './pages/Courses';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Status from './pages/Status';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import MonitoringLogin from './pages/MonitoringLogin';
@@ -40,7 +39,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/about" element={<About />} />
-            <Route path="/status" element={<Status />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
